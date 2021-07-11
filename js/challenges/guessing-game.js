@@ -174,6 +174,8 @@ function gameWin() {
   document.getElementById("mainGame").style.display = "none";
   document.getElementById("RRguess").style.display = "none";
   document.getElementById("youWin").style.display = "block";
+  const el = document.getElementsByClassName("overlay__guessing");
+  el[0].style.visibility = "hidden";
   document.getElementsByClassName("lock")[0].innerHTML =
     parseInt(document.getElementsByClassName("lock")[0].innerHTML) - 1;
 }
