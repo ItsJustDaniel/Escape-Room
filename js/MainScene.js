@@ -114,14 +114,14 @@ export default class MainScene extends Phaser.Scene {
         }
 
         if (e[i] === this.drawer) {
-          document.getElementsByClassName("lock")[0].value -= 1;
+          document.getElementsByClassName("lock")[0].innerHTML =
+            parseInt(document.getElementsByClassName("lock")[0].innerHTML) - 1;
         }
         if (
           e[i] === this.door &&
           !this.lock1.active &&
           !this.lock2.active &&
-          !this.lock3.active &&
-          !this.lock4.active
+          !this.lock3.active
         ) {
           const style = {
             font: "65px Arial",
@@ -145,9 +145,15 @@ export default class MainScene extends Phaser.Scene {
       el1[0].style.visibility = "hidden";
       el2[0].style.visibility = "hidden";
       el3[0].style.visibility = "hidden";
-      const lock = document.getElementsByClassName("lock")[0];
-      if (lock.value === 2) {
+      const lock = document.getElementsByClassName("lock")[0].innerHTML;
+      if (lock == 2) {
+        this.lock1.destroy();
+      }
+      if (lock == 1) {
         this.lock2.destroy();
+      }
+      if (lock == 0) {
+        this.lock3.destroy();
       }
     });
   }

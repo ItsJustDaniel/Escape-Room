@@ -32,8 +32,9 @@ function wins(user, comp) {
     () => document.getElementById(user).classList.remove("green-glow"),
     300
   );
-  document.getElementsByClassName("lock")[0].value -= 1;
-  console.log(document.getElementsByClassName("lock")[0].value);
+  document.getElementsByClassName("lock")[0].innerHTML =
+    parseInt(document.getElementsByClassName("lock")[0].innerHTML) - 1;
+  console.log(document.getElementsByClassName("lock")[0]);
 }
 
 function lose(user, comp) {
