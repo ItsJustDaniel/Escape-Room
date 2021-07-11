@@ -1,5 +1,5 @@
 export default class MainScene extends Phaser.Scene {
-  constructor() {
+  constructor(args) {
     super("MainScene");
   }
 
@@ -34,7 +34,9 @@ export default class MainScene extends Phaser.Scene {
     this.board = this.add
       .sprite(800, 220, "board")
       .setInteractive({ cursor: "pointer" });
-    this.lock = this.add.sprite(300, 400, "lock");
+    this.lock1 = this.add.sprite(300, 400, "lock");
+    this.lock2 = this.add.sprite(300, 350, "lock");
+    this.lock3 = this.add.sprite(300, 300, "lock");
 
     // this.victory = this.add.text(300, 250, "Congrations! You Won!", style);
 
@@ -95,14 +97,35 @@ export default class MainScene extends Phaser.Scene {
     for (let i = 0; i < e.length; i++) {
       e[i].on("pointerdown", () => {
         console.log("down");
-        if (e[i] === this.drawer) {
-          this.lock.destroy();
-          console.log(this.lock);
+        if (e[i] === this.bookshelf) {
+          const el = document.getElementsByClassName(
+            "overlay__rock-paper-scissors"
+          );
+          console.log(el);
+          el[0].style.visibility = "visible";
+          window.scrollTo(0, 0);
         }
-        if (e[i] === this.door && !this.lock.active) {
+
+        if (e[i] === this.board) {
+          const el = document.getElementsByClassName("overlay__guessing");
+          console.log(el);
+          el[0].style.visibility = "visible";
+          window.scrollTo(0, 0);
+        }
+
+        if (e[i] === this.drawer) {
+          document.getElementsByClassName("lock")[0].value -= 1;
+        }
+        if (
+          e[i] === this.door &&
+          !this.lock1.active &&
+          !this.lock2.active &&
+          !this.lock3.active &&
+          !this.lock4.active
+        ) {
           const style = {
             font: "65px Arial",
-            fill: "#ff0044",
+            fill: "white",
             align: "center",
           };
 
@@ -110,5 +133,22 @@ export default class MainScene extends Phaser.Scene {
         }
       });
     }
+  }
+
+  update() {
+    this.input.keyboard.on("keydown-" + "ESC", () => {
+      const el1 = document.getElementsByClassName("overlay__guessing");
+      const el2 = document.getElementsByClassName(
+        "overlay__rock-paper-scissors"
+      );
+      const el3 = document.getElementsByClassName("overlay__guessing");
+      el1[0].style.visibility = "hidden";
+      el2[0].style.visibility = "hidden";
+      el3[0].style.visibility = "hidden";
+      const lock = document.getElementsByClassName("lock")[0];
+      if (lock.value === 2) {
+        this.lock2.destroy();
+      }
+    });
   }
 }
