@@ -37,6 +37,7 @@ export default class MainScene extends Phaser.Scene {
     this.lock1 = this.add.sprite(300, 400, "lock");
     this.lock2 = this.add.sprite(300, 350, "lock");
     this.lock3 = this.add.sprite(300, 300, "lock");
+    this.drawerClicked = false;
 
     // this.victory = this.add.text(300, 250, "Congrations! You Won!", style);
 
@@ -119,10 +120,10 @@ export default class MainScene extends Phaser.Scene {
           window.scrollTo(0, 0);
         }
 
-        if (e[i] === this.drawer) {
+        if (e[i] === this.drawer && !this.drawerClicked) {
           document.getElementsByClassName("lock")[0].innerHTML =
             parseInt(document.getElementsByClassName("lock")[0].innerHTML) - 1;
-          this.lock2.destroy();
+          this.drawerClicked = true;
         }
         if (
           e[i] === this.door &&

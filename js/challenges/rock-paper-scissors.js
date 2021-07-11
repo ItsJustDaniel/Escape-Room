@@ -7,6 +7,7 @@ const result_p = document.querySelector(".result > p");
 const rock_div = document.getElementById("r");
 const paper_div = document.getElementById("p");
 const scissors_div = document.getElementById("s");
+const doneBefore = false;
 
 function getComputerChoice() {
   const choices = ["r", "p", "s"];
@@ -32,9 +33,14 @@ function wins(user, comp) {
     () => document.getElementById(user).classList.remove("green-glow"),
     300
   );
-  document.getElementsByClassName("lock")[0].innerHTML =
-    parseInt(document.getElementsByClassName("lock")[0].innerHTML) - 1;
+
   console.log(document.getElementsByClassName("lock")[0]);
+  if (userScore >= 3 && !doneBefore) {
+    const el = document.getElementsByClassName("overlay__rock-paper-scissors");
+    el[0].style.visibility = "hidden";
+    document.getElementsByClassName("lock")[0].innerHTML =
+      parseInt(document.getElementsByClassName("lock")[0].innerHTML) - 1;
+  }
 }
 
 function lose(user, comp) {
