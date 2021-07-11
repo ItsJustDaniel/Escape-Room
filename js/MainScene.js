@@ -102,6 +102,9 @@ export default class MainScene extends Phaser.Scene {
             "overlay__rock-paper-scissors"
           );
           console.log(el);
+          document.getElementsByClassName(
+            "overlay__guessing"
+          )[0].style.visibility = "hidden";
           el[0].style.visibility = "visible";
           window.scrollTo(0, 0);
         }
@@ -109,6 +112,9 @@ export default class MainScene extends Phaser.Scene {
         if (e[i] === this.board) {
           const el = document.getElementsByClassName("overlay__guessing");
           console.log(el);
+          document.getElementsByClassName(
+            "overlay__rock-paper-scissors"
+          )[0].style.visibility = "hidden";
           el[0].style.visibility = "visible";
           window.scrollTo(0, 0);
         }
