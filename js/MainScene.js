@@ -124,6 +124,7 @@ export default class MainScene extends Phaser.Scene {
           document.getElementsByClassName("lock")[0].innerHTML =
             parseInt(document.getElementsByClassName("lock")[0].innerHTML) - 1;
           this.drawerClicked = true;
+          this.update();
         }
         if (
           e[i] === this.door &&
@@ -153,16 +154,17 @@ export default class MainScene extends Phaser.Scene {
       el1[0].style.visibility = "hidden";
       el2[0].style.visibility = "hidden";
       el3[0].style.visibility = "hidden";
-      const lock = document.getElementsByClassName("lock")[0].innerHTML;
-      if (lock == 2) {
-        this.lock1.destroy();
-      }
-      if (lock == 1) {
-        this.lock2.destroy();
-      }
-      if (lock == 0) {
-        this.lock3.destroy();
-      }
     });
+    const lock = document.getElementsByClassName("lock")[0].innerHTML;
+
+    if (parseInt(lock) <= 2) {
+      this.lock1.destroy();
+    }
+    if (parseInt(lock) <= 1) {
+      this.lock2.destroy();
+    }
+    if (parseInt(lock) <= 0) {
+      this.lock3.destroy();
+    }
   }
 }
