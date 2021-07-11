@@ -122,6 +122,7 @@ export default class MainScene extends Phaser.Scene {
         if (e[i] === this.drawer) {
           document.getElementsByClassName("lock")[0].innerHTML =
             parseInt(document.getElementsByClassName("lock")[0].innerHTML) - 1;
+          this.lock2.destroy();
         }
         if (
           e[i] === this.door &&
